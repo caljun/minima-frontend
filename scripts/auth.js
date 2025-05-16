@@ -29,7 +29,7 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
 
     if (res.ok) {
       localStorage.setItem("token", data.token);
-      location.reload();
+      window.location.href = "home.html";
     } else {
       alert(data.message || "登録に失敗しました");
     }
@@ -69,7 +69,7 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
 
     if (res.ok) {
       localStorage.setItem("token", data.token);
-      location.reload();
+      window.location.href = "home.html";
     } else {
       alert(data.message || "ログインに失敗しました");
     }
