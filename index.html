@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>minima</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/minima-icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  
+</head>
+<body class="index-container">
+
+    <h1>minima</h1>
+    <br>
+
+  <div class="index-btn-group">
+    <a href="login.html" class="start-button">ログイン</a>
+    <a href="register.html" class="start-button">新規登録</a>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => {
+            console.log('✅ ServiceWorker登録成功:', reg.scope);
+          }).catch(err => {
+            console.log('⚠️ ServiceWorker登録失敗:', err);
+          });
+      });
+    }
+  </script>  
+
+</body>
+</html>

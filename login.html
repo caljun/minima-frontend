@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ログイン | minima</title>
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="auth-container">
+
+  <h1>ログイン</h1>
+
+  <form id="loginForm" class="auth-form">
+    <input type="email" id="loginEmail" placeholder="メールアドレス" required />
+    <input type="password" id="loginPassword" placeholder="パスワード" required />
+    <button type="submit">ログイン</button>
+  </form>
+
+  <p class="link-text">
+    アカウントをお持ちでない方は <a href="register.html">新規登録</a>
+  </p>
+
+  <script src="scripts/auth.js"></script>
+</body>
+</html>

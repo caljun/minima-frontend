@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>購入完了 | minima</title>
+  <link rel="stylesheet" href="css/success.css" />
+</head>
+<body>
+
+  <!-- 固定ヘッダー -->
+  <header class="fixed-header">
+    <h1>購入完了</h1>
+  </header>
+
+  <!-- 中央コンテンツ -->
+  <main class="center-content">
+    <h2>ご購入ありがとうございました！</h2>
+    <p>商品の発送は出品者と直接ご確認ください。</p>
+
+    <!-- ✅ 購入商品表示エリア -->
+    <div id="purchasedItem" class="item-card">
+      <img id="itemImage" src="default-image.png" alt="商品画像" />
+      <div class="info">
+        <p id="itemName">商品名</p>
+        <p id="itemPrice">価格</p>
+      </div>
+    </div>
+
+    <a href="home.html" class="btn">ホームへ戻る</a>
+  </main>
+
+  <!-- ✅ 共通タブバー -->
+  <nav class="tab-bar">
+    <a href="home.html" class="tab-item active">ホーム</a>
+    <a href="search.html" class="tab-item">検索</a>
+    <a href="post.html" class="tab-item">出品</a>
+    <a href="notification.html" class="tab-item">通知</a>
+    <a href="profile.html" class="tab-item">プロフ</a>
+  </nav>
+
+  <!-- ✅ JS読み込み -->
+  <script src="scripts/success.js"></script>
+</body>
+</html>

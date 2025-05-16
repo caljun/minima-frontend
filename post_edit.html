@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>投稿を編集</title>
+  <link rel="stylesheet" href="post.css" />
+</head>
+<body>
+  <header>
+    <h1>投稿を編集</h1>
+  </header>
+
+  <main>
+    <form id="editForm" enctype="multipart/form-data">
+      <label>商品名</label>
+      <input type="text" id="postName" name="name" required />
+
+      <label>価格（1〜10000円）</label>
+      <input type="number" id="postPrice" name="price" required min="1" max="10000" />
+
+      <label>画像（変更しない場合は未選択でOK）</label>
+      <input type="file" id="postImage" name="image" accept="image/*" />
+
+      <label>説明（理由）</label>
+      <textarea id="postDescription" name="reason" rows="4" required></textarea>
+
+      <button type="submit">更新する</button>
+    </form>
+  </main>
+
+  <script src="post_edit.js"></script>
+</body>
+</html>

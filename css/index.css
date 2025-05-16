@@ -1,0 +1,52 @@
+body.index-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    gap: 24px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
+  
+  .catchphrase {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .index-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 80%;
+    max-width: 320px;
+  }
+  
+  .start-button {
+    font-size: 18px;
+    padding: 14px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .start-button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  
