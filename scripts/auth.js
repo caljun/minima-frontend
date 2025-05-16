@@ -1,4 +1,4 @@
-const API_URL = "https://iranai-backend.onrender.com"; // ← 本番用バックエンドURL
+const API_URL = "https://minima-backend1.onrender.com"; // ← 本番用バックエンドURL
 
 document.getElementById("registerForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();

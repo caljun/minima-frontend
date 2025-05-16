@@ -1,4 +1,4 @@
-const API_URL = "https://iranai-backend.onrender.com";
+const API_URL = "https://minima-backend1.onrender.com";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const postId = new URLSearchParams(window.location.search).get("id");
