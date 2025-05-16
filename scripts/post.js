@@ -22,9 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("reason", description);
     formData.append("image", image);
 
+    const token = localStorage.getItem("token");
+
     try {
       const res = await fetch(`${API_URL}/api/posts`, {
         method: "POST",
+        headers:{
+          Authorization: `Bearer ${token}`
+        },
         body: formData,
       });
 
