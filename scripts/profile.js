@@ -31,7 +31,7 @@ function fetchUserProfile() {
 }
 
 function fetchUserPosts() {
-  fetch(`${API_URL}/api/posts/mine`, {
+  fetch(`${API_URL}/api/posts/me`, {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
   })
     .then(res => res.json())
@@ -91,7 +91,7 @@ function setupImageUpload() {
 
     try {
       const res = await fetch("/api/users/profile-image", {
-        method: "POST",
+        method: "PUT",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         body: formData
       });
