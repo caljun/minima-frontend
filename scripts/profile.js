@@ -2,11 +2,17 @@ const API_URL = "https://minima-backend1.onrender.com";
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
-  if (!token) return;
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
 
   fetchUserProfile();
   fetchUserPosts();
   setupImageUpload();
+  setupNameUpdate();
+  setupShopNameUpdate();
+  setupUrlCopy();
   setupLogout();
 });
 
@@ -16,17 +22,28 @@ function fetchUserProfile() {
   })
     .then(res => res.json())
     .then(user => {
-      document.getElementById("userName").textContent = user.name || "名無し";
-      document.getElementById("userEmail").textContent = user.email || "";
-      document.getElementById("profileIcon").src = user.imageUrl || "default-icon.png";
+      // プロフィール画像
+      if (user.profileImage) {
+        document.getElementById("profileIcon").src = user.profileImage;
+      }
 
-      const userUrl = `${window.location.origin}/u/${user.userUrl}`;
-      const urlAnchor = document.getElementById("userUrl");
-      urlAnchor.href = userUrl;
-      urlAnchor.textContent = userUrl;
+      // ユーザー名
+      const nameInput = document.getElementById("userName");
+      nameInput.value = user.name || "";
+
+      // ショップ名
+      const shopNameInput = document.getElementById("shopName");
+      shopNameInput.value = user.shopName || "";
+
+      // ショップURL
+      const shopUrl = `${window.location.origin}/shop/${user.shopId}`;
+      const urlAnchor = document.getElementById("shopUrl");
+      urlAnchor.href = shopUrl;
+      urlAnchor.textContent = shopUrl;
     })
     .catch(err => {
       console.error("ユーザー情報の取得失敗", err);
+      alert("プロフィール情報の取得に失敗しました");
     });
 }
 
@@ -80,6 +97,39 @@ function fetchUserPosts() {
     });
 }
 
+function setupNameUpdate() {
+  const updateBtn = document.getElementById("updateName");
+  const nameInput = document.getElementById("userName");
+
+  updateBtn.addEventListener("click", async () => {
+    const name = nameInput.value.trim();
+    if (!name) {
+      alert("名前を入力してください");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/api/users/name`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ name })
+      });
+
+      if (res.ok) {
+        alert("名前を更新しました");
+      } else {
+        alert("更新に失敗しました");
+      }
+    } catch (err) {
+      console.error("名前更新エラー:", err);
+      alert("更新中にエラーが発生しました");
+    }
+  });
+}
+
 function setupImageUpload() {
   const imageInput = document.getElementById("profileImageUpload");
   imageInput.addEventListener("change", async () => {
@@ -90,7 +140,7 @@ function setupImageUpload() {
     formData.append("image", file);
 
     try {
-      const res = await fetch("/api/users/profile-image", {
+      const res = await fetch(`${API_URL}/api/users/profile-image`, {
         method: "PUT",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         body: formData
@@ -104,7 +154,51 @@ function setupImageUpload() {
       }
     } catch (err) {
       console.error("画像アップロード失敗", err);
+      alert("アップロード中にエラーが発生しました");
     }
+  });
+}
+
+function setupShopNameUpdate() {
+  const updateBtn = document.getElementById("updateShopName");
+  const shopNameInput = document.getElementById("shopName");
+
+  updateBtn.addEventListener("click", async () => {
+    const shopName = shopNameInput.value.trim();
+    if (!shopName) {
+      alert("ショップ名を入力してください");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/api/users/shop-name`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ shopName })
+      });
+
+      if (res.ok) {
+        alert("ショップ名を更新しました");
+      } else {
+        alert("更新に失敗しました");
+      }
+    } catch (err) {
+      console.error("ショップ名更新エラー:", err);
+      alert("更新中にエラーが発生しました");
+    }
+  });
+}
+
+function setupUrlCopy() {
+  const copyBtn = document.getElementById("copyUrl");
+  copyBtn.addEventListener("click", () => {
+    const url = document.getElementById("shopUrl").href;
+    navigator.clipboard.writeText(url)
+      .then(() => alert("URLをコピーしました"))
+      .catch(() => alert("コピーに失敗しました"));
   });
 }
 

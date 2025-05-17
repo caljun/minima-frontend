@@ -19,16 +19,28 @@
     <!-- アイコン + 画像変更 -->
     <label for="profileImageUpload" class="profile-icon-wrapper">
       <img id="profileIcon" src="default-icon.png" alt="プロフィール画像">
+      <div class="icon-overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
     </label>
     <input type="file" id="profileImageUpload" style="display: none;" accept="image/*" />
 
-    <!-- 名前 -->
-    <div class="profile-info">
-      <p id="userName">ユーザー名</p>
+    <!-- ユーザー情報 -->
+    <div class="user-info">
+      <input type="text" id="userName" placeholder="ユーザー名を入力" class="name-input">
+      <button id="updateName" class="update-btn">更新</button>
     </div>
 
-    <!-- URL表示 -->
-    <p class="profile-url">あなたのURL：<a id="userUrl" href="#" target="_blank"></a></p>
+    <!-- ショップ情報 -->
+    <div class="shop-info">
+      <input type="text" id="shopName" placeholder="ショップ名を入力" class="shop-name-input">
+      <button id="updateShopName" class="update-btn">更新</button>
+      <p class="shop-url">あなたのショップURL：<br><a id="shopUrl" href="#" target="_blank"></a></p>
+      <button id="copyUrl" class="copy-btn">URLをコピー</button>
+    </div>
 
     <!-- 出品履歴 -->
     <section class="profile-gallery-section">

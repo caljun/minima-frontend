@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ショップ | minima</title>
+  <link rel="stylesheet" href="css/shop.css" />
+  
+  <!-- OGP設定 -->
+  <meta property="og:title" content="minima - 1万円以下のフリマアプリ" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="1万円以下のアイテムに特化したフリマアプリ" />
+  <meta property="og:url" content="" /> <!-- JavaScriptで動的に設定 -->
+  <meta property="og:image" content="" /> <!-- JavaScriptで動的に設定 -->
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="fixed-header">
+    <h1 id="shopName">ショップ名</h1>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="shop-container">
+    <!-- プロフィール部分 -->
+    <div class="shop-profile">
+      <img id="shopIcon" src="default-icon.png" alt="ショップアイコン" class="shop-icon">
+      <div class="shop-info">
+        <h2 id="shopNameDetail">ショップ名</h2>
+        <p id="shopId" class="shop-id"></p>
+      </div>
+    </div>
+
+    <!-- 商品一覧 -->
+    <section class="shop-items">
+      <h3>出品商品</h3>
+      <div id="itemsGrid" class="items-grid">
+        <!-- 商品が動的に追加される -->
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/shop.js"></script>
+</body>
+</html> 
