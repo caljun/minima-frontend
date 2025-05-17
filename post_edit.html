@@ -4,31 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>投稿を編集</title>
-  <link rel="stylesheet" href="post.css" />
+  <link rel="stylesheet" href="css/post.css" />
 </head>
 <body>
-  <header>
+  <header class="fixed-header">
     <h1>投稿を編集</h1>
   </header>
 
-  <main>
+  <main class="post-form-container">
     <form id="editForm" enctype="multipart/form-data">
-      <label>商品名</label>
-      <input type="text" id="postName" name="name" required />
+      <div class="form-group">
+        <label>商品名</label>
+        <input type="text" id="postName" name="name" required />
+      </div>
 
-      <label>価格（1〜10000円）</label>
-      <input type="number" id="postPrice" name="price" required min="1" max="10000" />
+      <div class="form-group">
+        <label>価格（1〜10000円）</label>
+        <div class="price-input-wrapper">
+          <input type="number" id="postPrice" name="price" required min="1" max="10000" />
+          <span class="currency">円</span>
+        </div>
+        <div class="commission-preview">
+          <span>販売手数料: <span id="commission">0</span>円</span>
+          <span>販売利益: <span id="profit">0</span>円</span>
+        </div>
+      </div>
 
-      <label>画像（変更しない場合は未選択でOK）</label>
-      <input type="file" id="postImage" name="image" accept="image/*" />
+      <div class="form-group">
+        <label>カテゴリー</label>
+        <select id="postCategory" name="category" required>
+          <option value="">選択してください</option>
+          <option value="fashion">ファッション</option>
+          <option value="electronics">家電・スマホ</option>
+          <option value="books">本・音楽・ゲーム</option>
+          <option value="hobby">おもちゃ・ホビー</option>
+          <option value="beauty">コスメ・美容</option>
+        </select>
+      </div>
 
-      <label>説明（理由）</label>
-      <textarea id="postDescription" name="reason" rows="4" required></textarea>
+      <div class="form-group">
+        <label>商品画像</label>
+        <div class="image-upload-area" id="dropZone">
+          <div id="currentImage" class="current-image"></div>
+          <div class="upload-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/>
+              <path d="M12 8v8M8 12h8"/>
+            </svg>
+            <p>画像を変更する場合は<br>ドラッグ＆ドロップまたは選択</p>
+          </div>
+          <input type="file" id="postImage" name="image" accept="image/*" hidden />
+        </div>
+      </div>
 
-      <button type="submit">更新する</button>
+      <div class="form-group">
+        <label>商品の説明</label>
+        <textarea id="postDescription" name="description" rows="4" required></textarea>
+        <span class="char-count">0/1000</span>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="cancel-button" onclick="history.back()">キャンセル</button>
+        <button type="submit" class="submit-button">更新する</button>
+      </div>
     </form>
   </main>
 
-  <script src="post_edit.js"></script>
+  <script src="scripts/post_edit.js"></script>
 </body>
 </html>
