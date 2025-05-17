@@ -1,109 +1,188 @@
 /* === 全体 === */
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #4ecdc4;
+  --text-color: #2d3436;
+  --background-color: #f9f9f9;
+  --border-color: #e0e0e0;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans JP', sans-serif;
-    background-color: #fff;
-    color: #000;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* === ヘッダー === */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+  padding: 0 16px;
+}
+
+.fixed-header h1 {
+  margin: 0;
+  padding: 16px 0;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+/* === フィルター === */
+.filter-container {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* === メインコンテンツ === */
+.main-content {
+  margin-top: 110px;
+  margin-bottom: 60px;
+  padding: 16px;
+}
+
+/* === 投稿一覧（メルカリ風カード） === */
+.post-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.post-item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.post-item:hover {
+  transform: translateY(-2px);
+}
+
+.post-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.post-info {
+  padding: 8px;
+}
+
+.post-price {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.post-title {
+  font-size: 14px;
+  margin: 4px 0;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* === スケルトンローディング === */
+.skeleton-loader {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.skeleton-item {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 12px;
+  height: 200px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
   }
-  
-  /* === ヘッダー === */
-  .fixed-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    color: #000;
-    text-align: center;
-    padding: 5px 0;
-    font-size: 15px;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+  100% {
+    background-position: -200% 0;
   }
-  
-  /* === 投稿一覧（メルカリ風カード） === */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-    padding: 90px 16px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+}
+
+/* === ローディングスピナー === */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loading-spinner::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border: 3px solid #f0f0f0;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
   }
-  
-  /* 投稿カード */
-  .post-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .post-card img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .post-card .price {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-    padding: 8px 12px 0;
-  }
-  
-  .post-card .title {
-    font-size: 13px;
-    color: #444;
-    padding: 4px 12px 12px;
-    line-height: 1.4;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 2行で省略 */
-    -webkit-box-orient: vertical;
-  }
-  
-  /* === タブバー === */
-  .tab-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .tab-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    font-size: 10px;
-    color: #666;
-  }
-  
-  .tab-item svg {
-    stroke: #666;
-  }
-  
-  .tab-item.active {
-    color: #000;
-  }
-  
-  .tab-item.active svg {
-    stroke: #000;
-  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* === タブバー === */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #666;
+  font-size: 10px;
+  padding: 8px;
+}
+
+.tab-item.active {
+  color: var(--primary-color);
+}
+
+.tab-item svg {
+  margin-bottom: 4px;
+}
   

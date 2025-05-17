@@ -10,10 +10,30 @@
 
   <header class="fixed-header">
     <h1>minima</h1>
+    <div class="filter-container">
+      <select id="priceFilter" class="filter-select">
+        <option value="all">価格帯</option>
+        <option value="0-3000">3000円以下</option>
+        <option value="3001-5000">3001-5000円</option>
+        <option value="5001-10000">5001-10000円</option>
+      </select>
+      <select id="sortFilter" class="filter-select">
+        <option value="newest">新着順</option>
+        <option value="popular">人気順</option>
+        <option value="price-low">価格が安い順</option>
+        <option value="price-high">価格が高い順</option>
+      </select>
+    </div>
   </header>
 
   <main class="main-content">
+    <div class="skeleton-loader" id="skeletonLoader">
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+    </div>
     <div id="postGallery" class="post-gallery"></div>
+    <div id="loadingSpinner" class="loading-spinner hidden"></div>
   </main>
 
 <!-- 共通タブバー -->

@@ -1,117 +1,284 @@
 /* === 全体 === */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans JP', sans-serif;
-    background-color: #fff;
-    color: #000;
-  }
-  
-  /* === ヘッダー === */
-  .fixed-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    color: #000;
-    text-align: center;
-    padding: 5px 0;
-    font-size: 15px;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-  
-  /* === フォームコンテナ === */
-  .post-form-container {
-    padding: 100px 20px 80px; /* ヘッダーとタブ分を確保 */
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="file"],
-  textarea {
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  textarea {
-    resize: none;
-  }
-  
-  button[type="submit"] {
-    padding: 14px;
-    font-size: 18px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #333;
-  }
-  
-  /* === タブバー（共通） === */
-  .tab-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .tab-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    font-size: 10px;
-    color: #666;
-  }
-  
-  .tab-item svg {
-    stroke: #666;
-  }
-  
-  .tab-item.active {
-    color: #000;
-  }
-  
-  .tab-item.active svg {
-    stroke: #000;
-  }
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #4ecdc4;
+  --text-color: #2d3436;
+  --background-color: #f9f9f9;
+  --border-color: #e0e0e0;
+}
 
-  .sold-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background-color: rgba(255, 0, 0, 0.8);
-    color: white;
-    padding: 4px 6px;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 4px;
-    z-index: 1;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* === ヘッダー === */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+  padding: 16px;
+}
+
+.fixed-header h1 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+/* === フォームコンテナ === */
+.post-form-container {
+  margin-top: 120px;
+  margin-bottom: 60px;
+  padding: 16px;
+}
+
+/* === プログレスバー === */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0 20px;
+}
+
+.progress-step {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: var(--border-color);
+}
+
+.progress-step::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+  z-index: 1;
+}
+
+.progress-step::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--border-color);
+}
+
+.progress-step:first-child::after {
+  left: 50%;
+  width: 50%;
+}
+
+.progress-step:last-child::after {
+  width: 50%;
+}
+
+.progress-step.active {
+  color: var(--primary-color);
+}
+
+.progress-step.active::before {
+  background-color: var(--primary-color);
+}
+
+.progress-step.active::after {
+  background-color: var(--primary-color);
+}
+
+/* === フォームステップ === */
+.form-step {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-step.hidden {
+  display: none;
+}
+
+/* === 画像アップロードエリア === */
+.image-upload-area {
+  border: 2px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-upload-area:hover {
+  border-color: var(--primary-color);
+}
+
+.upload-placeholder {
+  color: #666;
+}
+
+.upload-placeholder svg {
+  margin-bottom: 12px;
+  color: #666;
+}
+
+.image-preview {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* === 入力フォーム === */
+.input-group {
+  margin-bottom: 24px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.price-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency {
+  position: absolute;
+  right: 12px;
+  color: #666;
+}
+
+.commission-preview {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* === ボタン === */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.next-step,
+.submit-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.back-step {
+  background-color: var(--border-color);
+  color: var(--text-color);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* === バリデーションメッセージ === */
+.validation-message {
+  display: block;
+  font-size: 14px;
+  color: var(--primary-color);
+  margin-top: 4px;
+}
+
+/* === タブバー（共通） === */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #666;
+  font-size: 10px;
+  padding: 8px;
+}
+
+.tab-item.active {
+  color: var(--primary-color);
+}
+
+.tab-item svg {
+  margin-bottom: 4px;
+}
+
+.sold-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 1;
+}
   
   
